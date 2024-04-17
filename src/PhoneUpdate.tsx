@@ -11,15 +11,20 @@ type clientType = {
 }
 function App() {
   const [user, setUser] = useState([])
-  const [search, setSearch] = useState('')
+  const [phone, setPhone] = useState('')
+  const [localizer, setLocalizer] = useState('')
 
-  function getUser(localizer:string){
+  function updateUser(){
     const options = {
-      method: 'GET',
-      headers: {'Content-Type': 'application/json'}
+      method: 'PUT',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+      localizer: localizer,
+      phone: phone
+      })
     };
  
-    fetch(`https://lokatur.com.br/users/${localizer}`, options)
+    fetch(`https://lokatur.com.br/users/phone`, options)
     .then(response => response.json())
     .then(response => setUser(response))
     .catch(err => console.error(err));
@@ -27,7 +32,7 @@ function App() {
   
   const handleSubmit = async (event:React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    await getUser(search)
+    await updateUser()
   }
   
   return (
@@ -38,11 +43,18 @@ function App() {
         <input 
           className='border border-white px-1 rounded bg-slate-700 w-[200px] h-8'
           type="text" 
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          value={localizer}
+          onChange={(e) => setLocalizer(e.target.value)}
         />
       </label>
-      
+      <label className='flex flex-row gap-1 '>Telefone 
+        <input 
+          className='border border-white px-1 rounded bg-slate-700 w-[200px] h-8'
+          type="text" 
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+        />
+      </label>
       <button 
       className=' bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
       type="submit" name='Procurar'>Procurar reserva</button>
@@ -50,11 +62,7 @@ function App() {
       <div>
       {user.map((client:clientType) => (
         <div key={client.id} className=" flex flex-row  ">
-          <p className=' w-fit border border-white px-1'>{client.first_name} {client.last_name}</p>
-          <p className=' w-fit border border-white px-1'>{client.email}</p>
           <p className=' w-fit border border-white px-1'>{client.phone}</p>
-          <p className=' w-fit border border-white px-1'>{client.created_at}</p>
-          <p className=' w-fit border border-white px-1'>{client.booking_date}</p>
         </div>
       ))}
       </div>
