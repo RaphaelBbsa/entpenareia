@@ -7,6 +7,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { Links } from './Links.tsx';
+import { UpdatePhone } from './PhoneUpdate.tsx';
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
     path: "/reserva",
     element: <App/>,
   },
+  {
+    path: "/phoneUpdate",
+    element: <UpdatePhone/>
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
