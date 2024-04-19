@@ -6,8 +6,14 @@ type clientType = {
   last_name: string,
   email: string,
   phone: string,
-  created_at: string,
-  booking_date: string
+  booking_date: string,
+  check_in: string,
+  check_out: string,
+  booking_status: string,
+  check_in_message: string,
+  check_out_message: string,
+  concierge_message: string,
+  new_booking_message: string,
 }
 function App() {
   const [user, setUser] = useState([])
@@ -21,7 +27,10 @@ function App() {
  
     fetch(`https://lokatur.com.br/users/${localizer}`, options)
     .then(response => response.json())
-    .then(response => setUser(response))
+    .then(response => {
+      setUser(response)
+      console.log(response)
+    })
     .catch(err => console.error(err));
    }
   
@@ -50,11 +59,53 @@ function App() {
       <div>
       {user.map((client:clientType) => (
         <div key={client.id} className=" flex flex-row  ">
-          <p className=' w-fit border border-white px-1'>{client.first_name} {client.last_name}</p>
-          <p className=' w-fit border border-white px-1'>{client.email}</p>
-          <p className=' w-fit border border-white px-1'>{client.phone}</p>
-          <p className=' w-fit border border-white px-1'>{client.created_at}</p>
-          <p className=' w-fit border border-white px-1'>{client.booking_date}</p>
+          <div>
+          Nome
+          <p className=' w-fit border border-white px-2 py-1'>{client.first_name} {client.last_name}</p>
+          </div>
+          <div>
+          Email
+          <p className=' w-fit border border-white px-2 py-1'>{client.email}</p>
+          </div>
+          <div>
+          Phone
+          <p className=' w-fit border border-white px-2 py-1'>{client.phone}</p>
+          </div>
+          <div>
+          Booking status
+          <p className=' w-full border border-white px-2 py-1'>{client.booking_status}</p>
+          </div>
+          <div>
+          Booking date
+          <p className=' w-full border border-white px-2 py-1'>{client.booking_date}</p>
+          </div>
+          <div>
+          Checkin
+          <p className=' w-full border border-white px-2 py-1'>{client.check_in}</p>
+          </div>
+          <div>
+          Checkout
+          <p className=' w-full border border-white px-2 py-1'>{client.check_out}</p>
+          </div>
+          <div>
+          Checkin message
+          <p className=' w-full border border-white px-2 py-1'>{client.check_in_message}</p>
+          </div>
+          <div>
+          Checkout message
+          <p className=' w-full border border-white px-2 py-1'>{client.check_out_message}</p>
+          </div>
+          <div>
+          Concierge message
+          <p className=' w-full border border-white px-2 py-1'>{client.concierge_message}</p>
+          </div>
+          <div>
+          New booking message
+          <p className=' w-full border border-white px-2 py-1'>{client.new_booking_message}</p>
+          </div>
+          <div>
+
+          </div>
         </div>
       ))}
       </div>

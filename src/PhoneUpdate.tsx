@@ -1,16 +1,16 @@
 import { useState } from 'react'
 import './index.css'
-type clientType = {
-  id: string,
-  first_name: string,
-  last_name: string,
-  email: string,
-  phone: string,
-  created_at: string,
-  booking_date: string
-}
+// type clientType = {
+//   id: string,
+//   first_name: string,
+//   last_name: string,
+//   email: string,
+//   phone: string,
+//   created_at: string,
+//   booking_date: string
+// }
 export function UpdatePhone() {
-  const [user, setUser] = useState([])
+  const [user, setUser] = useState()
   const [phone, setPhone] = useState('')
   const [localizer, setLocalizer] = useState('')
 
@@ -34,7 +34,17 @@ export function UpdatePhone() {
     event.preventDefault();
     await updateUser()
   }
-  
+ console.log(user)
+  if (user === 1){
+    return (
+    <div>
+    {user && <div  className=" flex flex-row justify-center items-center h-screen w-screen">
+        <p className=' w-fit text-xl px-1'>Número de telefone atualizado</p>
+      </div>
+    }
+  </div>
+    )
+  } else {
   return (
     <main className=' flex flex-col justify-center items-center h-screen'>
     <form onSubmit={handleSubmit} 
@@ -63,14 +73,8 @@ export function UpdatePhone() {
      </div>
  
     </form>
-      <div>
-      {user.map((client:clientType) => (
-        <div key={client.id} className=" flex flex-row  ">
-          <p className=' w-fit border border-white px-1'>{client.phone}</p>
-        </div>
-      ))}
-      </div>
     </main>
   )
+  }
 }
 

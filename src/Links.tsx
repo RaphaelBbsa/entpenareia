@@ -6,6 +6,8 @@ export function Links() {
       <a className=" underline" href='/'>Home</a>
       <a className="underline" href='/reserva'>Buscar reserva</a>
       <a className="underline" href='/phoneUpdate'>Atualizar telefone</a>
+      <a className="underline" href='/checkins'>Listar checkins</a>
+      <a className="underline" href='/newbookings'>Listar novas reservas</a>
     </div>
   )
 }

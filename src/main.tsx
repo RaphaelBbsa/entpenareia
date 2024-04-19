@@ -8,6 +8,8 @@ import {
 } from "react-router-dom";
 import { Links } from './Links.tsx';
 import { UpdatePhone } from './PhoneUpdate.tsx';
+import { ListCheckins } from './listAll.tsx';
+import { NewBookings } from './NewBookings.tsx';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +23,14 @@ const router = createBrowserRouter([
   {
     path: "/phoneUpdate",
     element: <UpdatePhone/>
+  },
+  {
+    path: "/checkins",
+    element: <ListCheckins/>
+  },
+  {
+    path: "/newbookings",
+    element: <NewBookings/>
   }
 ]);
 

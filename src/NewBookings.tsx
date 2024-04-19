@@ -16,7 +16,7 @@ type clientType = {
   concierge_message: string,
   new_booking_message: string,
 }
-export function ListCheckins() {
+export function NewBookings() {
   const [user, setUser] = useState([])
 
     const options = {
@@ -24,7 +24,7 @@ export function ListCheckins() {
       headers: {'Content-Type': 'application/json'}
     };
  
-    fetch(`https://lokatur.com.br/users/checkin`, options)
+    fetch(`https://lokatur.com.br/users/new`, options)
     .then(response => response.json())
     .then(response => {
       setUser(response)
