@@ -10,6 +10,8 @@ import { Links } from './Links.tsx';
 import { UpdatePhone } from './PhoneUpdate.tsx';
 import { ListCheckins } from './listAll.tsx';
 import { NewBookings } from './NewBookings.tsx';
+import { AddBooking } from './addBooking.tsx';
+import { WrongPhones } from './wrongPhones.tsx';
 
 const router = createBrowserRouter([
   {
@@ -31,6 +33,14 @@ const router = createBrowserRouter([
   {
     path: "/newbookings",
     element: <NewBookings/>
+  },
+  {
+    path: "/addbooking",
+    element: <AddBooking/>
+  },
+  {
+    path: "/wrongphones",
+    element: <WrongPhones/>
   }
 ]);
 

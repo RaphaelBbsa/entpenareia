@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './index.css'
 type clientType = {
   id: string,
   first_name: string,
+  localizer: string,
   last_name: string,
   email: string,
   phone: string,
@@ -24,6 +25,7 @@ export function NewBookings() {
       headers: {'Content-Type': 'application/json'}
     };
  
+    useEffect(() => {
     fetch(`https://lokatur.com.br/users/new`, options)
     .then(response => response.json())
     .then(response => {
@@ -31,16 +33,22 @@ export function NewBookings() {
       console.log(response)
     })
     .catch(err => console.error(err));
-
+  }, [])
   
+  const sortedUsers = [...user].sort((a:clientType, b:clientType) => {
+    // Convertendo as datas para objetos Date para compará-las
+    const dateA = new Date(a.check_in);
+    const dateB = new Date(b.check_in);
+    return dateA.getTime() - dateB.getTime(); // Ordene em ordem crescente, para ordem decrescente, basta trocar para 'dateB.getTime() - dateA.getTime()'
+  });
 
-  
   return (
     <main className=' flex flex-col justify-center items-center'>
       <table>
        <thead>
          <tr className='border'>
            <th>Nome</th>
+            <th>Localizador</th>
            <th>Email</th>
            <th>Phone</th>
            <th>Booking Status</th>
@@ -54,19 +62,20 @@ export function NewBookings() {
          </tr>
        </thead>
        <tbody>
-      {user.map((client:clientType) => (
+      {sortedUsers?.map((client:clientType) => (
          <tr key={client.created_at} className='border'>
-           <td className='border'>{client.first_name} {client.last_name}</td>
-           <td className='border'>{client.email}</td>
-           <td className='border'>{client.phone}</td>
-           <td className='border'>{client.booking_status}</td>
-           <td className='border'>{client.booking_date}</td>
-           <td className='border'>{client.check_in}</td>
-           <td className='border'>{client.check_out}</td>
-           <td className='border'>{client.check_in_message}</td>
-           <td className='border'>{client.check_out_message}</td>
-           <td className='border'>{client.concierge_message}</td>
-           <td className='border'>{client.new_booking_message}</td>
+           <td className='item'>{client.localizer}</td>
+           <td className='item'>{client.first_name} {client.last_name}</td>
+           <td className='item'>{client.email}</td>
+           <td className='item'>{client.phone}</td>
+           <td className='item'>{client.booking_status}</td>
+           <td className='item'>{client.booking_date}</td>
+           <td className='item'>{client.check_in}</td>
+           <td className='item'>{client.check_out}</td>
+           <td className='item'>{client.check_in_message}</td>
+           <td className='item'>{client.check_out_message}</td>
+           <td className='item'>{client.concierge_message}</td>
+           <td className='item'>{client.new_booking_message}</td>
          </tr>
       ))}
        </tbody>

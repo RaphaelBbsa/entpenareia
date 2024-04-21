@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './index.css'
 type clientType = {
   id: string,
+  localizer: string,
   first_name: string,
   last_name: string,
   email: string,
@@ -23,7 +24,7 @@ export function ListCheckins() {
       method: 'GET',
       headers: {'Content-Type': 'application/json'}
     };
- 
+    useEffect(() => {
     fetch(`https://lokatur.com.br/users/checkin`, options)
     .then(response => response.json())
     .then(response => {
@@ -31,15 +32,19 @@ export function ListCheckins() {
       console.log(response)
     })
     .catch(err => console.error(err));
-
-  
-
-  
+  }, [])
+  const sortedUsers = [...user].sort((a:clientType, b:clientType) => {
+    // Convertendo as datas para objetos Date para compará-las
+    const dateA = new Date(a.check_in);
+    const dateB = new Date(b.check_in);
+    return dateA.getTime() - dateB.getTime(); // Ordene em ordem crescente, para ordem decrescente, basta trocar para 'dateB.getTime() - dateA.getTime()'
+  });
   return (
     <main className=' flex flex-col justify-center items-center'>
       <table>
        <thead>
          <tr className='border'>
+            <th>Localizador</th>
            <th>Nome</th>
            <th>Email</th>
            <th>Phone</th>
@@ -54,8 +59,9 @@ export function ListCheckins() {
          </tr>
        </thead>
        <tbody>
-      {user.map((client:clientType) => (
+      {sortedUsers.map((client:clientType) => (
          <tr key={client.created_at} className='border'>
+          <td className='border'>{client.localizer}</td>
            <td className='border'>{client.first_name} {client.last_name}</td>
            <td className='border'>{client.email}</td>
            <td className='border'>{client.phone}</td>

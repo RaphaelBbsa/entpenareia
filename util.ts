@@ -1,0 +1,1 @@
+export const api = 'https://lokatur.com.br/users'
