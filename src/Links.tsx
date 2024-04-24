@@ -8,7 +8,7 @@ export function Links() {
       <a className="underline" href='/phoneUpdate'>Atualizar telefone</a>
       <a className="underline" href='/checkins'>Listar checkins</a>
       <a className="underline" href='/newbookings'>Listar novas reservas</a>
-      {/* <a className="underline" href='/addbooking'>Adicionar reserva</a> */}
+      <a className="underline" href='/addbooking'>Adicionar reserva</a>
       <a className="underline" href='/wrongphones'>Listar telefones errados</a>
     </div>
   )

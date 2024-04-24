@@ -34,7 +34,6 @@ export function UpdatePhone() {
     event.preventDefault();
     await updateUser()
   }
- console.log(user)
   if (user === 1){
     return (
     <div>
