@@ -37,8 +37,8 @@ export function NewBookings() {
   
   const sortedUsers = [...user].sort((a:clientType, b:clientType) => {
     // Convertendo as datas para objetos Date para compará-las
-    const dateA = new Date(a.check_in);
-    const dateB = new Date(b.check_in);
+    const dateA = new Date(a.booking_date);
+    const dateB = new Date(b.booking_date);
     return dateA.getTime() - dateB.getTime(); // Ordene em ordem crescente, para ordem decrescente, basta trocar para 'dateB.getTime() - dateA.getTime()'
   });
 
