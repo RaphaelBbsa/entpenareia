@@ -9,27 +9,28 @@ import './index.css'
 //   created_at: string,
 //   booking_date: string
 // }
-export function UpdatePhone() {
+export function CheckBooking() {
   const [user, setUser] = useState()
-  const [phone, setPhone] = useState('')
+  const [phone, setPhone] = useState(false)
   const [localizer, setLocalizer] = useState('')
 
+ 
   function updateUser(){
     const options = {
       method: 'PUT',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
       localizer: localizer,
-      phone: phone
+      check: phone
       })
     };
- 
-    fetch(`https://lokatur.com.br/users/phone`, options)
+ console.log(options)
+    fetch(`https://lokatur.com.br/users/check`, options)
     .then(response => response.json())
     .then(response => setUser(response))
     .catch(err => console.error(err));
    }
-  
+   
   const handleSubmit = async (event:React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     await updateUser()
@@ -38,7 +39,7 @@ export function UpdatePhone() {
     return (
     <div>
     {user && <div  className=" flex flex-row justify-center items-center h-screen w-screen">
-        <p className=' w-fit text-xl px-1'>Número de telefone atualizado</p>
+        <p className=' w-fit text-xl px-1'>Status atualizado</p>
       </div>
     }
   </div>
@@ -58,14 +59,20 @@ export function UpdatePhone() {
           onChange={(e) => setLocalizer(e.target.value)}
         />
       </label>
-      <label className='flex flex-col gap-1 '>Telefone 
-        <input 
-          className='border border-white px-1 rounded bg-slate-700 w-max h-8'
-          type="text" 
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-        />
+      
+      <label
+      className='flex justify-center items-center gap-2'
+      > Marcar reserva como concluída
+      <input 
+       className='border border-white px-1 rounded bg-slate-700 w-4 h-8'
+      type="checkbox" 
+      id="phone" 
+      name="phone" 
+      value={phone ? 0: 1}
+      onChange={(e) => setPhone(e.target.checked)}
+      />
       </label>
+    
       <button 
       className=' bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
       type="submit" name='Procurar'>Atualizar</button>

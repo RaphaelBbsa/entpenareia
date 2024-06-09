@@ -16,6 +16,7 @@ type clientType = {
   check_out_message: string,
   concierge_message: string,
   new_booking_message: string,
+  checked: boolean
 }
 export function NewBookings() {
   const [user, setUser] = useState([])
@@ -37,8 +38,8 @@ export function NewBookings() {
   
   const sortedUsers = [...user].sort((a:clientType, b:clientType) => {
     // Convertendo as datas para objetos Date para compará-las
-    const dateA = new Date(a.check_in);
-    const dateB = new Date(b.check_in);
+    const dateA = new Date(a.booking_date);
+    const dateB = new Date(b.booking_date);
     return dateA.getTime() - dateB.getTime(); // Ordene em ordem crescente, para ordem decrescente, basta trocar para 'dateB.getTime() - dateA.getTime()'
   });
 
@@ -47,8 +48,9 @@ export function NewBookings() {
       <table>
        <thead>
          <tr className='border'>
+           <th>checked</th>
+           <th>Localizador</th>
            <th>Nome</th>
-            <th>Localizador</th>
            <th>Email</th>
            <th>Phone</th>
            <th>Booking Status</th>
@@ -64,6 +66,7 @@ export function NewBookings() {
        <tbody>
       {sortedUsers?.map((client:clientType) => (
          <tr key={client.created_at} className='border'>
+           <td className='item'>{client.checked}</td>
            <td className='item'>{client.localizer}</td>
            <td className='item'>{client.first_name} {client.last_name}</td>
            <td className='item'>{client.email}</td>
