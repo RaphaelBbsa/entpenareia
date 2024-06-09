@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import './index.css'
 type clientType = {
+  checked:boolean,
   id: string,
   localizer: string,
   first_name: string,
@@ -44,7 +45,8 @@ export function ListCheckins() {
       <table>
        <thead>
          <tr className='border'>
-            <th>Localizador</th>
+           <th>checked</th> 
+           <th>Localizador</th>
            <th>Nome</th>
            <th>Email</th>
            <th>Phone</th>
@@ -61,6 +63,7 @@ export function ListCheckins() {
        <tbody>
       {sortedUsers.map((client:clientType) => (
          <tr key={client.created_at} className='border'>
+          <td className='item'>{client.checked}</td>
           <td className='border'>{client.localizer}</td>
            <td className='border'>{client.first_name} {client.last_name}</td>
            <td className='border'>{client.email}</td>

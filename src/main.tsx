@@ -15,6 +15,7 @@ import { WrongPhones } from './wrongPhones.tsx';
 import { CheckBooking } from './checkBooking.tsx';
 import { ListConciergePhones } from './listConciergePhones.tsx';
 import { AddConcierge } from './addConciergePhone.tsx';
+import { UpdateConcierge } from './updateConciergePhone.tsx';
 
 const router = createBrowserRouter([
   {
@@ -54,8 +55,12 @@ const router = createBrowserRouter([
     element: <ListConciergePhones/>
   },
   {
-    path: "/addconcierge",
+    path: "/concierge/new",
     element: <AddConcierge/>
+  },
+  {
+    path: "/concierge/update",
+    element: <UpdateConcierge/>
   }
 ]);
 
