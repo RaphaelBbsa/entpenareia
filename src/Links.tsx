@@ -12,7 +12,8 @@ export function Links() {
       <a className="underline" href='/wrongphones'>Listar telefones errados</a>
       <a className="underline" href='/checkbooking'>Marcar reserva concluida</a>
       <a className="underline" href='/concierges'>Listar portarias</a>
-      <a className="underline" href='/addconcierge'>adicionar portaria</a>
+      <a className="underline" href='/concierge/new'>Adicionar portaria</a>
+      <a className="underline" href='/concierge/update'>Atualizar portaria</a>
     </div>
   )
 }

@@ -28,17 +28,18 @@ export function ListConciergePhones() {
       <table>
        <thead>
          <tr className='border'>
+           <th>Id</th>
            <th>Nome</th>
            <th>Phone</th>
          </tr>
        </thead>
        <tbody>
-      {phones.map((client:concierge) => (
-         <tr key={client.id} className='border'>
-      
-           <td className='border'>{client.concierge_name}</td>
+      {phones.map((concierge:concierge) => (
+         <tr key={concierge.id} className='border'>
+           <td className='border'>{concierge.id}</td>
+           <td className='border'>{concierge.concierge_name}</td>
         
-           <td className='border'>{client.concierge_phone}</td>
+           <td className='border'>{concierge.concierge_phone}</td>
           
          </tr>
       ))}
