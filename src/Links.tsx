@@ -10,6 +10,9 @@ export function Links() {
       <a className="underline" href='/newbookings'>Listar novas reservas</a>
       <a className="underline" href='/addbooking'>Adicionar reserva</a>
       <a className="underline" href='/wrongphones'>Listar telefones errados</a>
+      <a className="underline" href='/checkbooking'>Marcar reserva concluida</a>
+      <a className="underline" href='/concierges'>Listar portarias</a>
+      <a className="underline" href='/addconcierge'>adicionar portaria</a>
     </div>
   )
 }

@@ -12,6 +12,9 @@ import { ListCheckins } from './listAll.tsx';
 import { NewBookings } from './NewBookings.tsx';
 import { AddBooking } from './addBooking.tsx';
 import { WrongPhones } from './wrongPhones.tsx';
+import { CheckBooking } from './checkBooking.tsx';
+import { ListConciergePhones } from './listConciergePhones.tsx';
+import { AddConcierge } from './addConciergePhone.tsx';
 
 const router = createBrowserRouter([
   {
@@ -41,6 +44,18 @@ const router = createBrowserRouter([
   {
     path: "/wrongphones",
     element: <WrongPhones/>
+  },
+  {
+    path: "/checkbooking",
+    element: <CheckBooking/>
+  },
+  {
+    path: "/concierges",
+    element: <ListConciergePhones/>
+  },
+  {
+    path: "/addconcierge",
+    element: <AddConcierge/>
   }
 ]);
 
