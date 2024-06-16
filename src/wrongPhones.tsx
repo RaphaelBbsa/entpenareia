@@ -6,6 +6,11 @@ type clientType = {
   localizer: string,
   email: string,
   phone: string,
+  booking_date:string,
+  subscriber_id:string,
+  check_in:string,
+  new_booking_message?: string,
+  check_in_message?: string
 }
 
 export function WrongPhones() {
@@ -24,7 +29,12 @@ export function WrongPhones() {
   })
   .catch(err => console.error(err));
 }, [])
-
+const sortedUsers = [...user].sort((a:clientType, b:clientType) => {
+  // Convertendo as datas para objetos Date para compará-las
+  const dateA = new Date(a.booking_date);
+  const dateB = new Date(b.booking_date);
+  return dateA.getTime() - dateB.getTime(); // Ordene em ordem crescente, para ordem decrescente, basta trocar para 'dateB.getTime() - dateA.getTime()'
+});
 useEffect(() => {
   fetch(`${api}/check-in-wrong-phones`, options)
   .then(response => response.json())
@@ -34,6 +44,12 @@ useEffect(() => {
   })
   .catch(err => console.error(err));
 }, [])
+const sortedUsersCheckin = [...checkInUser].sort((a:clientType, b:clientType) => {
+  // Convertendo as datas para objetos Date para compará-las
+  const dateA = new Date(a.check_in);
+  const dateB = new Date(b.check_in);
+  return dateA.getTime() - dateB.getTime(); // Ordene em ordem crescente, para ordem decrescente, basta trocar para 'dateB.getTime() - dateA.getTime()'
+});
   return (
     <main className=' flex flex-col justify-center items-center'>
       <h2 className=' font-semibold text-2xl my-6'>Reservas de hoje</h2>
@@ -41,14 +57,22 @@ useEffect(() => {
     <table>
     <thead>
       <tr className='border'>
-       <th>Localizador</th>
-       <th>Email</th>
-       <th>Phone</th>
+      <th>Mensagem</th>
+      <th>BotConversa ID</th>
+      <th>Booking Date</th>
+      {/* <th>Check-in Date</th> */}
+      <th>Localizador</th>
+      <th>Email</th>
+      <th>Phone</th>
       </tr>
     </thead>
     <tbody>
-   {user?.map((client:clientType) => (
+   {sortedUsers?.map((client:clientType) => (
       <tr key={client.id} className='border'>
+        <td className='item'>{client.new_booking_message ? <p>✅</p> : <p>❌</p>}</td>
+        <td className='item'>{client.subscriber_id}</td>
+        <td className='item'>{client.booking_date}</td>
+        {/* <td className='item'>{client.check_in}</td> */}
         <td className='item'>{client.localizer}</td>
         <td className='item'>{client.email}</td>
         <td className='item'>{client.phone}</td>
@@ -60,10 +84,14 @@ useEffect(() => {
       <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-200" />
       <h2 className=' font-semibold text-2xl my-6'>Check-in's de hoje</h2>
 
-  { checkInUser.length !== 0 ? 
+  { sortedUsersCheckin.length !== 0 ? 
    <table>
      <thead>
        <tr className='border'>
+        <th>Mensagem</th>
+        <th>BotConversa ID</th>
+        {/* <th>Booking Date</th> */}
+        <th>Check-in</th>
         <th>Localizador</th>
         <th>Email</th>
         <th>Phone</th>
@@ -71,11 +99,15 @@ useEffect(() => {
      </thead>
      <tbody>
    
-    {checkInUser?.map((client:clientType) => (
+    {sortedUsersCheckin?.map((client:clientType) => (
        <tr key={client.id} className='border'>
-         <td className='item'>{client.localizer}</td>
-         <td className='item'>{client.email}</td>
-         <td className='item'>{client.phone}</td>
+        <td className='item'>{client.check_in_message ? <p>✅</p> : <p>❌</p>}</td>
+        <td className='item'>{client.subscriber_id}</td>
+        {/* <td className='item'>{client.booking_date}</td> */}
+        <td className='item'>{client.check_in}</td>
+        <td className='item'>{client.localizer}</td>
+        <td className='item'>{client.email}</td>
+        <td className='item'>{client.phone}</td>
        </tr>
     ))}
      </tbody>
