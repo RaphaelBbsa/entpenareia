@@ -20,12 +20,12 @@ export function CheckBooking() {
       method: 'PUT',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-      localizer: localizer,
+      id: localizer,
       check: phone
       })
     };
  console.log(options)
-    fetch(`https://lokatur.com.br/users/check`, options)
+    fetch(`https://lokatur.com.br/users/checksub`, options)
     .then(response => response.json())
     .then(response => setUser(response))
     .catch(err => console.error(err));
@@ -51,10 +51,11 @@ export function CheckBooking() {
     className=' mb-8 w-auto flex flex-row gap-2 justify-center items-center'>
      <div className=' flex flex-col gap-4 justify-center items-center'>
      <label className='flex flex-col gap-1 '>
-     Localizador 
+     Id BotConversa 
         <input 
           className='border border-white px-1 rounded bg-slate-700 w-max h-8'
           type="text" 
+          placeholder='Ex: 8763945'
           value={localizer}
           onChange={(e) => setLocalizer(e.target.value)}
         />
