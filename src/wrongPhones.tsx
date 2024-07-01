@@ -70,7 +70,7 @@ const sortedUsersCheckin = [...checkInUser].sort((a:clientType, b:clientType) =>
 });
   return (
     <main className=' flex flex-col justify-center items-center'>   
-      <h2 className=' font-semibold text-2xl my-6'>Check-in's de hoje</h2>
+      <h2 className=' font-semibold text-2xl my-6'>Reservas antigas</h2>
       {pastUsers.length !== 0 ?
     <table>
     <thead>
