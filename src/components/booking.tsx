@@ -1,16 +1,15 @@
 import { useState } from 'react'
 import '../index.css'
-import { CheckBooking } from '../checkBooking'
 
 export function Booking({client}: any) {
   const [bookingStatus, setBookingStatus] = useState<boolean>( )
-  const [user, setUser] = useState()
 
 async function selectForm(e:any){
    await setBookingStatus(e)
+   console.log(bookingStatus)
  }
   function CheckBooking(e:any){
- 
+    selectForm(e)
   const options = {
     method: 'PUT',
     headers: {'Content-Type': 'application/json'},
@@ -33,7 +32,7 @@ async function selectForm(e:any){
             name="check_booking" 
             id="change_status"
              
-            onChange={(e) => [selectForm(e.target.value), CheckBooking(e.target.value)]}
+            onChange={(e) => CheckBooking(e.target.value)}
           >
             {client.checked? 
             <>
