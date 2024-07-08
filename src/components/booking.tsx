@@ -29,6 +29,7 @@ async function selectForm(e:any){
           <td className='item'>
             <select 
             className=' text-black' 
+            style={{color: "black"}}
             name="check_booking" 
             id="change_status"
              
