@@ -32,8 +32,8 @@ export function WrongPhones() {
   }, [])
   const sortedPastUsers = [...pastUsers].sort((a:clientType, b:clientType) => {
     // Convertendo as datas para objetos Date para compará-las
-    const dateA = new Date(a.booking_date);
-    const dateB = new Date(b.booking_date);
+    const dateA = new Date(a.check_in);
+    const dateB = new Date(b.check_in);
     return dateA.getTime() - dateB.getTime(); // Ordene em ordem crescente, para ordem decrescente, basta trocar para 'dateB.getTime() - dateA.getTime()'
   });
 
@@ -77,8 +77,8 @@ const sortedUsersCheckin = [...checkInUser].sort((a:clientType, b:clientType) =>
       <tr className='border'>
       <th>Mensagem</th>
       <th>BotConversa ID</th>
-      <th>Booking Date</th>
-      {/* <th>Check-in Date</th> */}
+      {/* <th>Booking Date</th> */}
+      <th>Check-in Date</th>
       <th>Localizador</th>
       <th>Email</th>
       <th>Phone</th>
@@ -89,8 +89,8 @@ const sortedUsersCheckin = [...checkInUser].sort((a:clientType, b:clientType) =>
       <tr key={client.id} className='border'>
         <td className='item'>{client.new_booking_message ? <p>✅</p> : <p>❌</p>}</td>
         <td className='item'>{client.subscriber_id}</td>
-        <td className='item'>{client.booking_date}</td>
-        {/* <td className='item'>{client.check_in}</td> */}
+        {/* <td className='item'>{client.booking_date}</td> */}
+        <td className='item'>{client.check_in}</td>
         <td className='item'>{client.localizer}</td>
         <td className='item'>{client.email}</td>
         <td className='item'>{client.phone}</td>

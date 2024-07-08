@@ -14,6 +14,8 @@ type clientType = {
   check_out_message: string,
   concierge_message: string,
   new_booking_message: string,
+  subscriber_id: string,
+  checked: boolean
 }
 function App() {
   const [user, setUser] = useState([])
@@ -62,6 +64,14 @@ function App() {
           <div>
           Nome
           <p className=' w-fit border border-white px-2 py-1'>{client.first_name} {client.last_name}</p>
+          </div>
+          <div>
+          BotConversa
+          <p className=' w-fit border border-white px-2 py-1'> {client.subscriber_id}</p>
+          </div>
+          <div>
+          status
+          <p className=' w-fit border border-white px-2 py-1'> {client.checked}</p>
           </div>
           <div>
           Email
