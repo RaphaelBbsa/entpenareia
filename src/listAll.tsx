@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import './index.css'
 import { Booking } from './components/booking'
+
 export type clientType = {
   checked:boolean,
   id: string,

@@ -27,7 +27,11 @@ export function AddConcierge() {
     handleSubmit,
     formState: { errors },
   } = useForm<concierge>()
-  const onSubmit: SubmitHandler<concierge> = (data) => {console.log(data), createConcierge(data)}
+  const onSubmit: SubmitHandler<concierge> = (data) => {
+    console.log(data), createConcierge(data)
+    alert('Portaria adicionada')
+    location.replace('/concierges')  
+  }
 
  return (  
     <form
